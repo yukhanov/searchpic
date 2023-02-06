@@ -26,15 +26,15 @@ struct Images: Codable {
 
 // MARK: - ImagesResult
 struct ImagesResult: Codable {
-    let position: Int
-    let thumbnail: String
-    let source: String
-    let title: String
-    let link: String
-    let original: String
-    let originalWidth: Int
-    let originalHeight: Int
-    let isProduct: Bool
+    let position: Int?
+    let thumbnail: String?
+    let source: String?
+    let title: String?
+    let link: String?
+    let original: String?
+    let originalWidth: Int?
+    let originalHeight: Int?
+    let isProduct: Bool?
     let inStock: Bool?
 
     enum CodingKeys: String, CodingKey {
@@ -53,8 +53,8 @@ struct ImagesResult: Codable {
 
 // MARK: - SearchInformation
 struct SearchInformation: Codable {
-    let imageResultsState: String
-    let queryDisplayed: String
+    let imageResultsState: String?
+    let queryDisplayed: String?
     let menuItems: [MenuItem]
 
     enum CodingKeys: String, CodingKey {
@@ -66,8 +66,8 @@ struct SearchInformation: Codable {
 
 // MARK: - MenuItem
 struct MenuItem: Codable {
-    let position: Int
-    let title: String
+    let position: Int?
+    let title: String?
     let link: String?
     let serpapiLink: String?
 
@@ -81,14 +81,14 @@ struct MenuItem: Codable {
 
 // MARK: - SearchMetadata
 struct SearchMetadata: Codable {
-    let id: String
-    let status: String
-    let jsonEndpoint: String
-    let createdAt: String
-    let processedAt: String
-    let googleURL: String
-    let rawHTMLFile: String
-    let totalTimeTaken: Double
+    let id: String?
+    let status: String?
+    let jsonEndpoint: String?
+    let createdAt: String?
+    let processedAt: String?
+    let googleURL: String?
+    let rawHTMLFile: String?
+    let totalTimeTaken: Double?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -104,12 +104,12 @@ struct SearchMetadata: Codable {
 
 // MARK: - SearchParameters
 struct SearchParameters: Codable {
-    let engine: String
-    let q: String
-    let googleDomain: String
-    let ijn: String
-    let device: String
-    let tbm: String
+    let engine: String?
+    let q: String?
+    let googleDomain: String?
+    let ijn: String?
+    let device: String?
+    let tbm: String?
 
     enum CodingKeys: String, CodingKey {
         case engine = "engine"
@@ -123,11 +123,11 @@ struct SearchParameters: Codable {
 
 // MARK: - SuggestedSearch
 struct SuggestedSearch: Codable {
-    let name: String
-    let link: String
-    let chips: String
-    let serpapiLink: String
-    let thumbnail: String
+    let name: String?
+    let link: String?
+    let chips: String?
+    let serpapiLink: String?
+    let thumbnail: String?
 
     enum CodingKeys: String, CodingKey {
         case name = "name"
