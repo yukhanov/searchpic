@@ -17,6 +17,7 @@
 		004DDC552990AC3400C8DB9A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC542990AC3400C8DB9A /* NetworkManager.swift */; };
 		004DDC5A2990ACDF00C8DB9A /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC592990ACDF00C8DB9A /* Images.swift */; };
 		004DDC5C2990D06300C8DB9A /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC5B2990D06300C8DB9A /* ListViewModel.swift */; };
+		004DDC5E2990E50700C8DB9A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC5D2990E50700C8DB9A /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		004DDC542990AC3400C8DB9A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		004DDC592990ACDF00C8DB9A /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		004DDC5B2990D06300C8DB9A /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		004DDC5D2990E50700C8DB9A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +71,6 @@
 				004DDC562990ACB100C8DB9A /* Views */,
 				004DDC532990AC2400C8DB9A /* Network */,
 				004DDC4C2990A36700C8DB9A /* Coordinator */,
-				004DDC3C2990A13C00C8DB9A /* ImageListViewController.swift */,
 				004DDC522990A4F000C8DB9A /* Resources */,
 			);
 			path = SearchPic;
@@ -115,6 +116,8 @@
 		004DDC562990ACB100C8DB9A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				004DDC3C2990A13C00C8DB9A /* ImageListViewController.swift */,
+				004DDC5D2990E50700C8DB9A /* ImageCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				004DDC4F2990A3AA00C8DB9A /* Coordinator.swift in Sources */,
 				004DDC3D2990A13C00C8DB9A /* ImageListViewController.swift in Sources */,
 				004DDC392990A13C00C8DB9A /* AppDelegate.swift in Sources */,
+				004DDC5E2990E50700C8DB9A /* ImageCollectionViewCell.swift in Sources */,
 				004DDC5C2990D06300C8DB9A /* ListViewModel.swift in Sources */,
 				004DDC3B2990A13C00C8DB9A /* SceneDelegate.swift in Sources */,
 			);

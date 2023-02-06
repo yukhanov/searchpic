@@ -6,16 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 class ListViewModel {
     let networkManager = NetworkManager()
     var imagesArray = [ImagesResult]()
 
-    func fetchImages() {
+    func fetchImages(collectionView: UICollectionView) {
         networkManager.getPictures { [weak self] (result) in
             switch result {
             case .success(let data):
                 self?.imagesArray = data!
+                collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
