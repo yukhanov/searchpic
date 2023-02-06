@@ -18,25 +18,12 @@ class ListViewModel {
             switch result {
             case .success(let data):
                 self?.imagesArray = data!
+                print(self?.imagesArray)
                 collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
         }
     }
-//    
-//    func fetchImages(completion: @escaping(Result<[ImagesResult]?,Error>) -> Void) {
-//        networkManager.getPictures { [weak self] (result) in
-//            switch result {
-//            case .success(let data):
-//                if let data = data {
-//                    self?.imagesArray = data
-//                    completion(.success(data))
-//                }
-//            case .failure(let error):
-//                completion(.failure(error))
-//                
-//            }
-//        }
-//    }
+
 }

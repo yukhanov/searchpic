@@ -6,13 +6,51 @@
 //
 
 import UIKit
+import WebKit
 
 class ImageListViewController: UIViewController, Coordinating {
     var coordinator: Coordinator?
     var listViewModel = ListViewModel()
     
+    var sourceByIndexPath: String?
+    
     private var collectionView: UICollectionView?
     private var searchBar = UISearchBar()
+    
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+   private lazy var bigImageView: UIView = {
+        let view = UIView()
+       view.backgroundColor = .systemBackground
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private lazy var webView: WKWebView = {
+        let webView = WKWebView()
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        return webView
+    }()
+    
+    private lazy var linkButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+       
+        button.setTitle("Go to source", for: .normal)
+        button.backgroundColor = .white
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    
+    
+    
+
     
     
 
@@ -23,12 +61,8 @@ class ImageListViewController: UIViewController, Coordinating {
 
         
         setViews()
-        setConstraints()
-        //listViewModel.fetchImages(collectionView: collectionView!)
+    
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            print(self.listViewModel.imagesArray)
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -36,14 +70,85 @@ class ImageListViewController: UIViewController, Coordinating {
         searchBar.frame = CGRect(x: 20, y: view.safeAreaInsets.top, width: view.frame.size.width-20, height: 50)
         collectionView?.frame = CGRect(x: 0, y: view.safeAreaInsets.top+55, width: view.frame.size.width, height: view.frame.size.height-55)
     }
+    
+    func showBigImage() {
+  
+        
+        view.addSubview(bigImageView)
+        bigImageView.addSubview(imageView)
+        bigImageView.addSubview(linkButton)
+        setConstraintsForButton()
+        linkButton.addTarget(self, action: #selector(openSource), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            bigImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bigImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            bigImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bigImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            imageView.leadingAnchor.constraint(equalTo: bigImageView.leadingAnchor),
+            imageView.topAnchor.constraint(equalTo: bigImageView.topAnchor),
+            imageView.trailingAnchor.constraint(equalTo: bigImageView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bigImageView.bottomAnchor)
+        ])
+    }
+    
+    func configure(with urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self?.imageView.image = image
+            }
+        }
+        task.resume()
+    }
+    
 
+    
+
+    
+    @objc func openSource() {
+        view.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        loadRequest()
+    }
+    
+    func loadRequest() {
+        guard let url = URL(string: sourceByIndexPath!) else { return }
+        let urlRequest = URLRequest(url: url)
+        webView.load(urlRequest)
+    }
 
 }
 
-extension ImageListViewController: UICollectionViewDataSource, UISearchBarDelegate {
+extension ImageListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         listViewModel.imagesArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+ 
+        if let urlToBigImage = listViewModel.imagesArray[indexPath.row].original {
+    
+            sourceByIndexPath = listViewModel.imagesArray[indexPath.row].link
+            configure(with: urlToBigImage)
+            showBigImage()
+            
+            
+        }
+       
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,14 +176,20 @@ extension ImageListViewController: UICollectionViewDataSource, UISearchBarDelega
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         collectionView.dataSource = self
+        collectionView.delegate = self
         searchBar.delegate = self
         view.addSubview(collectionView)
         view.addSubview(searchBar)
         self.collectionView = collectionView
     }
     
-    func setConstraints() {
-        
+    func setConstraintsForButton() {
+        NSLayoutConstraint.activate([
+            linkButton.leadingAnchor.constraint(equalTo: bigImageView.leadingAnchor, constant: 20),
+            linkButton.topAnchor.constraint(equalTo: bigImageView.topAnchor, constant: 20)
+        ])
     }
+    
+
 }
 
