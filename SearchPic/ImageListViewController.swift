@@ -10,11 +10,17 @@ import UIKit
 class ImageListViewController: UIViewController, Coordinating {
     var coordinator: Coordinator?
     
+    var viewModel: ListViewModel!
+
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        print("hello")
+        viewModel = ListViewModel(networkManager: NetworkManager())
+  
     }
 
 
