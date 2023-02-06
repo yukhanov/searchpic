@@ -8,12 +8,19 @@
 import Foundation
 
 class ListViewModel {
-  //  let networkManager: NetworkManager!
+    let networkManager = NetworkManager()
     var imagesArray = [ImagesResult]()
-//    
-//    init(networkManager: NetworkManager) {
-//        self.networkManager = networkManager
-//    }
+
+    func fetchImages() {
+        networkManager.getPictures { [weak self] (result) in
+            switch result {
+            case .success(let data):
+                self?.imagesArray = data!
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 //    
 //    func fetchImages(completion: @escaping(Result<[ImagesResult]?,Error>) -> Void) {
 //        networkManager.getPictures { [weak self] (result) in

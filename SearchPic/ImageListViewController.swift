@@ -9,7 +9,6 @@ import UIKit
 
 class ImageListViewController: UIViewController, Coordinating {
     var coordinator: Coordinator?
-    let networkService = NetworkManager()
     var listViewModel = ListViewModel()
     
     
@@ -18,15 +17,8 @@ class ImageListViewController: UIViewController, Coordinating {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         print("hello")
-        networkService.getPictures { result in
-            switch result {
-            case .success(let data):
-                self.listViewModel.imagesArray = data!
-            case .failure(let error):
-                print(error)
-            }
-            
-        }
+
+        listViewModel.fetchImages()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             print(self.listViewModel.imagesArray)

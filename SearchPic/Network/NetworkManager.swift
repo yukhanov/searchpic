@@ -40,7 +40,7 @@ class NetworkManager {
             if let data = decodedData {
                 DispatchQueue.main.async {
                     completion(.success(data.imagesResults))
-                    print(data.imagesResults)
+                    
                 }
             }
         }.resume()
