@@ -19,8 +19,8 @@ class NetworkManager {
    // private let apiKey = "cc4981b5a8d143c4a13bf5dae5626be7" no more valid
    
     
-    func getPictures(completion: @escaping (Result<[ImagesResult]?,Error>)->Void) {
-        let urlString = "https://serpapi.com/search.json?q=Apple&tbm=isch&ijn=0&api_key=1369ea0742dc7627b35e82f39e2c82deec4a42c81ce9a7ce35dc4435c94a2748"
+    func getPictures(with g: String, completion: @escaping (Result<[ImagesResult]?,Error>)->Void) {
+        let urlString = "https://serpapi.com/search.json?q=\(g)&tbm=isch&ijn=0&api_key=1369ea0742dc7627b35e82f39e2c82deec4a42c81ce9a7ce35dc4435c94a2748"
         guard  let url = URL(string: urlString) else {
             return
         }

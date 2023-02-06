@@ -12,6 +12,7 @@ class ImageListViewController: UIViewController, Coordinating {
     var listViewModel = ListViewModel()
     
     private var collectionView: UICollectionView?
+    private var searchBar = UISearchBar()
     
     
 
@@ -23,7 +24,7 @@ class ImageListViewController: UIViewController, Coordinating {
         
         setViews()
         setConstraints()
-        listViewModel.fetchImages(collectionView: collectionView!)
+        //listViewModel.fetchImages(collectionView: collectionView!)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             print(self.listViewModel.imagesArray)
@@ -32,13 +33,14 @@ class ImageListViewController: UIViewController, Coordinating {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView?.frame = view.bounds
+        searchBar.frame = CGRect(x: 20, y: view.safeAreaInsets.top, width: view.frame.size.width-20, height: 50)
+        collectionView?.frame = CGRect(x: 0, y: view.safeAreaInsets.top+55, width: view.frame.size.width, height: view.frame.size.height-55)
     }
 
 
 }
 
-extension ImageListViewController: UICollectionViewDataSource {
+extension ImageListViewController: UICollectionViewDataSource, UISearchBarDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         listViewModel.imagesArray.count
@@ -52,6 +54,13 @@ extension ImageListViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let text = searchBar.text {
+            listViewModel.fetchImages(collectionView: collectionView!, g: text)
+        }
+    }
+    
     func setViews() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -62,7 +71,9 @@ extension ImageListViewController: UICollectionViewDataSource {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
         collectionView.dataSource = self
+        searchBar.delegate = self
         view.addSubview(collectionView)
+        view.addSubview(searchBar)
         self.collectionView = collectionView
     }
     

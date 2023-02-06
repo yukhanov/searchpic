@@ -11,9 +11,10 @@ import UIKit
 class ListViewModel {
     let networkManager = NetworkManager()
     var imagesArray = [ImagesResult]()
+    
 
-    func fetchImages(collectionView: UICollectionView) {
-        networkManager.getPictures { [weak self] (result) in
+    func fetchImages(collectionView: UICollectionView, g: String) {
+        networkManager.getPictures(with: g) { [weak self] (result) in
             switch result {
             case .success(let data):
                 self?.imagesArray = data!
