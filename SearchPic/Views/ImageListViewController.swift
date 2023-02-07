@@ -69,22 +69,12 @@ class ImageListViewController: UIViewController, Coordinating {
         return button
     }()
     
-    
-    
-
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Search images"
-
         leftBarButton()
         setViews()
-        
-    
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -104,7 +94,10 @@ class ImageListViewController: UIViewController, Coordinating {
     }
     
     @objc func goToList() {
-        coordinator?.eventOccured(with: .goToListVC)
+        //coordinator?.eventOccured(with: .goToListVC)
+        bigImageView.removeFromSuperview()
+        webView.removeFromSuperview()
+        
     }
     
     @objc func showPrevImage() {
