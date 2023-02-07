@@ -13,6 +13,7 @@ class ImageListViewController: UIViewController, Coordinating {
     var listViewModel = ListViewModel()
     
     var sourceByIndexPath: String?
+    var currentIndexPath = Int()
     
     private var collectionView: UICollectionView?
     private var searchBar = UISearchBar()
@@ -107,11 +108,11 @@ class ImageListViewController: UIViewController, Coordinating {
     }
     
     @objc func showPrevImage() {
-        
+        listViewModel.showPrevOriginImage(imagesArray: listViewModel.imagesArray, imageView: imageView, indexPath: &currentIndexPath)
     }
     
     @objc func showNextImage() {
-        
+        listViewModel.showNextOriginImage(imagesArray: listViewModel.imagesArray, imageView: imageView, indexPath: &currentIndexPath)
     }
     
     func showBigImage() {
@@ -186,6 +187,7 @@ extension ImageListViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
  
+        currentIndexPath = indexPath.row
         if let urlToBigImage = listViewModel.imagesArray[indexPath.row].original {
     
             sourceByIndexPath = listViewModel.imagesArray[indexPath.row].link
