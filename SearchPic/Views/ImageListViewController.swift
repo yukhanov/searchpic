@@ -48,6 +48,26 @@ class ImageListViewController: UIViewController, Coordinating {
         return button
     }()
     
+    private lazy var prevButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+       
+        button.setTitle("Prev", for: .normal)
+        button.backgroundColor = .white
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    
+    private lazy var nextButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+       
+        button.setTitle("Next", for: .normal)
+        button.backgroundColor = .white
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    
     
     
 
@@ -59,8 +79,9 @@ class ImageListViewController: UIViewController, Coordinating {
         view.backgroundColor = .systemBackground
         title = "Search images"
 
-        
+        leftBarButton()
         setViews()
+        
     
         
     }
@@ -71,14 +92,40 @@ class ImageListViewController: UIViewController, Coordinating {
         collectionView?.frame = CGRect(x: 0, y: view.safeAreaInsets.top+55, width: view.frame.size.width, height: view.frame.size.height-55)
     }
     
+    func leftBarButton() {
+        let leftBarButton = UIBarButtonItem(title: "Back",
+                                            style: UIBarButtonItem.Style.done,
+                                            target: self,
+                                            action: #selector(goToList))
+        
+        navigationItem.leftBarButtonItem = leftBarButton
+
+    }
+    
+    @objc func goToList() {
+        coordinator?.eventOccured(with: .goToListVC)
+    }
+    
+    @objc func showPrevImage() {
+        
+    }
+    
+    @objc func showNextImage() {
+        
+    }
+    
     func showBigImage() {
   
         
         view.addSubview(bigImageView)
         bigImageView.addSubview(imageView)
         bigImageView.addSubview(linkButton)
-        setConstraintsForButton()
+        bigImageView.addSubview(prevButton)
+        bigImageView.addSubview(nextButton)
+        setConstraintsForButtons()
         linkButton.addTarget(self, action: #selector(openSource), for: .touchUpInside)
+        prevButton.addTarget(self, action: #selector(showPrevImage), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(showNextImage), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             bigImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -183,10 +230,16 @@ extension ImageListViewController: UICollectionViewDataSource, UICollectionViewD
         self.collectionView = collectionView
     }
     
-    func setConstraintsForButton() {
+    func setConstraintsForButtons() {
         NSLayoutConstraint.activate([
             linkButton.leadingAnchor.constraint(equalTo: bigImageView.leadingAnchor, constant: 20),
-            linkButton.topAnchor.constraint(equalTo: bigImageView.topAnchor, constant: 20)
+            linkButton.topAnchor.constraint(equalTo: bigImageView.topAnchor, constant: 20),
+            
+            prevButton.leadingAnchor.constraint(equalTo: bigImageView.leadingAnchor, constant: 20),
+            prevButton.bottomAnchor.constraint(equalTo: bigImageView.bottomAnchor, constant: -50),
+            
+            nextButton.trailingAnchor.constraint(equalTo: bigImageView.trailingAnchor, constant: -20),
+            nextButton.bottomAnchor.constraint(equalTo: bigImageView.bottomAnchor, constant: -50)
         ])
     }
     

@@ -20,6 +20,12 @@ class AppCoordinator: Coordinator {
     }
     
     func eventOccured(with type: Event) {
+        switch type {
+        case .goToListVC:
+            var vc: UIViewController & Coordinating = ImageListViewController()
+            vc.coordinator = self
+            navigationController?.setViewControllers([vc], animated: true)
+        }
 //        switch type {
 //        case .loginButtonTapped:
 //            var vc: UIViewController & Coordinating = CryptoViewController()
