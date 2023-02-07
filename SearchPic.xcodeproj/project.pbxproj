@@ -14,6 +14,11 @@
 		004DDC452990A13E00C8DB9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004DDC432990A13E00C8DB9A /* LaunchScreen.storyboard */; };
 		004DDC4F2990A3AA00C8DB9A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC4E2990A3AA00C8DB9A /* Coordinator.swift */; };
 		004DDC512990A3BA00C8DB9A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC502990A3BA00C8DB9A /* AppCoordinator.swift */; };
+		004DDC552990AC3400C8DB9A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC542990AC3400C8DB9A /* NetworkManager.swift */; };
+		004DDC5A2990ACDF00C8DB9A /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC592990ACDF00C8DB9A /* Images.swift */; };
+		004DDC5C2990D06300C8DB9A /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC5B2990D06300C8DB9A /* ListViewModel.swift */; };
+		004DDC5E2990E50700C8DB9A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC5D2990E50700C8DB9A /* ImageCollectionViewCell.swift */; };
+		004DDC60299107E800C8DB9A /* BigImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004DDC5F299107E800C8DB9A /* BigImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		004DDC462990A13E00C8DB9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004DDC4E2990A3AA00C8DB9A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		004DDC502990A3BA00C8DB9A /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		004DDC542990AC3400C8DB9A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		004DDC592990ACDF00C8DB9A /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		004DDC5B2990D06300C8DB9A /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		004DDC5D2990E50700C8DB9A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		004DDC5F299107E800C8DB9A /* BigImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +68,11 @@
 		004DDC372990A13C00C8DB9A /* SearchPic */ = {
 			isa = PBXGroup;
 			children = (
+				004DDC582990ACC600C8DB9A /* ViewModels */,
+				004DDC572990ACBE00C8DB9A /* Models */,
+				004DDC562990ACB100C8DB9A /* Views */,
+				004DDC532990AC2400C8DB9A /* Network */,
 				004DDC4C2990A36700C8DB9A /* Coordinator */,
-				004DDC3C2990A13C00C8DB9A /* ImageListViewController.swift */,
 				004DDC522990A4F000C8DB9A /* Resources */,
 			);
 			path = SearchPic;
@@ -92,6 +105,40 @@
 				004DDC462990A13E00C8DB9A /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		004DDC532990AC2400C8DB9A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				004DDC542990AC3400C8DB9A /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		004DDC562990ACB100C8DB9A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				004DDC3C2990A13C00C8DB9A /* ImageListViewController.swift */,
+				004DDC5F299107E800C8DB9A /* BigImageView.swift */,
+				004DDC5D2990E50700C8DB9A /* ImageCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		004DDC572990ACBE00C8DB9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				004DDC592990ACDF00C8DB9A /* Images.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		004DDC582990ACC600C8DB9A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				004DDC5B2990D06300C8DB9A /* ListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,10 +211,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004DDC5A2990ACDF00C8DB9A /* Images.swift in Sources */,
+				004DDC552990AC3400C8DB9A /* NetworkManager.swift in Sources */,
 				004DDC512990A3BA00C8DB9A /* AppCoordinator.swift in Sources */,
 				004DDC4F2990A3AA00C8DB9A /* Coordinator.swift in Sources */,
 				004DDC3D2990A13C00C8DB9A /* ImageListViewController.swift in Sources */,
 				004DDC392990A13C00C8DB9A /* AppDelegate.swift in Sources */,
+				004DDC5E2990E50700C8DB9A /* ImageCollectionViewCell.swift in Sources */,
+				004DDC60299107E800C8DB9A /* BigImageView.swift in Sources */,
+				004DDC5C2990D06300C8DB9A /* ListViewModel.swift in Sources */,
 				004DDC3B2990A13C00C8DB9A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

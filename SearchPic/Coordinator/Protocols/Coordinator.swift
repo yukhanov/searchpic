@@ -8,10 +8,7 @@
 import UIKit
 
 enum Event {
-    case loginButtonTapped
-    case isUserAuthorised
-    case logout
-    case goToDetailVC(Data)
+    case goToListVC
 }
 
 protocol Coordinator {
