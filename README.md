@@ -4,3 +4,5 @@
 - MVVM + C
 - GCD
 - WebView
+
+<img src="https://github.com/yukhanov/searchpic/blob/main/Screenshots/1.png" width="30%" /> <img src="https://github.com/yukhanov/searchpic/blob/main/Screenshots/2.png" width="30%" /> <img src="https://github.com/yukhanov/searchpic/blob/main/Screenshots/3.png" width="30%" />
